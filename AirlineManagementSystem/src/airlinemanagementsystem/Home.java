@@ -1,5 +1,4 @@
 package airlinemanagementsystem;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -47,9 +46,14 @@ public class Home extends JFrame implements ActionListener{
         ticketCancellation.addActionListener(this);
         details.add(ticketCancellation);
         
+        JMenu ticket = new JMenu("Ticket");
+        menubar.add(ticket);
+        
+        JMenuItem boardingPass = new JMenuItem("Boarding Pass");
+        ticket.add(boardingPass);
+        
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setLocation(600, 250);
         setVisible(true);
     }
     

@@ -11,11 +11,13 @@ public class Login extends JFrame implements ActionListener{
     JPasswordField tfpassword;
     
     public Login() {
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(new Color(15, 17, 26));
         setLayout(null);
+        
         
         JLabel lblusername = new JLabel("Username");
         lblusername.setBounds(20, 20, 100, 20);
+        lblusername.setForeground(Color.WHITE);
         add(lblusername);
         
         tfusername = new JTextField();
@@ -24,6 +26,7 @@ public class Login extends JFrame implements ActionListener{
         
         JLabel lblpassword = new JLabel("Password");
         lblpassword.setBounds(20, 60, 100, 20);
+        lblpassword.setForeground(Color.WHITE);
         add(lblpassword);
         
         tfpassword = new JPasswordField();
@@ -60,7 +63,7 @@ public class Login extends JFrame implements ActionListener{
                   ResultSet rs = c.s.executeQuery(query);
                   
                    if (rs.next()) {
-                     System.out.println("valid");
+                    new Home();
                     setVisible(false);
                     
                 } else {
