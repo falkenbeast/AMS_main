@@ -5,86 +5,97 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class Login extends JFrame implements ActionListener{
+public class Login extends JFrame implements ActionListener {
     JButton submit, reset, close;
     JTextField tfusername;
     JPasswordField tfpassword;
-    
+
     public Login() {
+        // Set background color and layout
         getContentPane().setBackground(new Color(15, 17, 26));
-        setLayout(null);
-        
-        
+        setLayout(new GridBagLayout()); // Use GridBagLayout for responsive design
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); // Add padding between components
+
+        // Username label
         JLabel lblusername = new JLabel("Username");
-        lblusername.setBounds(20, 20, 100, 20);
         lblusername.setForeground(Color.WHITE);
-        add(lblusername);
-        
-        tfusername = new JTextField();
-        tfusername.setBounds(130, 20, 200, 20);
-        add(tfusername);
-        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        add(lblusername, gbc);
+
+        // Username text field
+        tfusername = new JTextField(15); // Width of 15 columns
+        gbc.gridx = 1;
+        add(tfusername, gbc);
+
+        // Password label
         JLabel lblpassword = new JLabel("Password");
-        lblpassword.setBounds(20, 60, 100, 20);
         lblpassword.setForeground(Color.WHITE);
-        add(lblpassword);
-        
-        tfpassword = new JPasswordField();
-        tfpassword.setBounds(130, 60, 200, 20);
-        add(tfpassword);
-        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        add(lblpassword, gbc);
+
+        // Password text field
+        tfpassword = new JPasswordField(15); // Width of 15 columns
+        gbc.gridx = 1;
+        add(tfpassword, gbc);
+
+        // Reset button
         reset = new JButton("Reset");
-        reset.setBounds(40, 120, 120, 20);
         reset.addActionListener(this);
-        add(reset);
-        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(reset, gbc);
+
+        // Submit button
         submit = new JButton("Submit");
-        submit.setBounds(190, 120, 120, 20);
         submit.addActionListener(this);
-        add(submit);
-        
+        gbc.gridx = 1;
+        add(submit, gbc);
+
+        // Close button
         close = new JButton("Close");
-        close.setBounds(120, 160, 120, 20);
         close.addActionListener(this);
-        add(close);
-        
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        add(close, gbc);
+
+        // Set window properties
         setSize(400, 250);
-        setLocation(600, 250);
+        setLocationRelativeTo(null); // Center the window
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close operation
         setVisible(true);
     }
-    
-  public void actionPerformed(ActionEvent ae) {
-          if(ae.getSource() == submit){
-              String username = tfusername.getText();
-              String password = tfpassword.getText();
-              try{
-                  Conn c = new Conn();
-                  String query = "select * from login where username = '"+username+"' and password = '"+password+"'";
-                  ResultSet rs = c.s.executeQuery(query);
-                  
-                   if (rs.next()) {
+
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == submit) {
+            String username = tfusername.getText();
+            String password = String.valueOf(tfpassword.getPassword()); // Get password securely
+            try {
+                Conn c = new Conn();
+                String query = "SELECT * FROM login WHERE username = '" + username + "' AND password = '" + password + "'";
+                ResultSet rs = c.s.executeQuery(query);
+
+                if (rs.next()) {
                     new Home();
                     setVisible(false);
-                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid Username or Password");
-                    setVisible(false);
                 }
-              }catch (Exception e){
-                  e.printStackTrace();
-              }
-          }
-          else if(ae.getSource() == reset){
-            
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (ae.getSource() == reset) {
             tfusername.setText("");
             tfpassword.setText("");
-            
-          }
-          else if(ae.getSource() == close){
-          
-          }
-  }
-    
+        } else if (ae.getSource() == close) {
+            System.exit(0); // Close the application
+        }
+    }
+
     public static void main(String[] args) {
         new Login();
     }
