@@ -12,7 +12,7 @@ public class Home extends JFrame implements ActionListener {
         // Load the background image
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("airlinemanagementsystem/icons/mainf.jpg"));
         JLabel image = new JLabel(i1);
-        image.setLayout(new BorderLayout());
+        image.setLayout(new BorderLayout()); // Ensure JLabel can hold components
         add(image, BorderLayout.CENTER);
 
         // Create a panel for heading
@@ -43,7 +43,6 @@ public class Home extends JFrame implements ActionListener {
         flightDetails.setBackground(new Color(15, 17, 26));
         flightDetails.setForeground(Color.white);
 
-
         JMenuItem customerDetails = new JMenuItem("Add Customer Details");
         customerDetails.addActionListener(this);
         details.add(customerDetails);
@@ -73,6 +72,7 @@ public class Home extends JFrame implements ActionListener {
         ticket.setForeground(Color.white);
 
         JMenuItem boardingPass = new JMenuItem("Boarding Pass");
+        boardingPass.addActionListener(this); // Added action listener for boarding pass
         ticket.add(boardingPass);
         boardingPass.setBackground(new Color(15, 17, 26));
         boardingPass.setForeground(Color.white);
@@ -90,11 +90,13 @@ public class Home extends JFrame implements ActionListener {
         } else if (text.equals("Flight Details")) {
             new FlightInfo();
         } else if (text.equals("Book Flight")) {
-           // new BookFlight();
+            new BookFlight();
         } else if (text.equals("Journey Details")) {
-        //    new JourneyDetails();
+            new JourneyDetails();
         } else if (text.equals("Cancel Ticket")) {
-          //  new Cancel();
+            new Cancel();
+        } else if (text.equals("Boarding Pass")) {
+            new BoardingPass();
         }
     }
 
