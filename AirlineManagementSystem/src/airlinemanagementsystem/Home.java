@@ -17,19 +17,28 @@ public class Home extends JFrame implements ActionListener {
 
         // Create a panel for heading
         JPanel headingPanel = new JPanel();
-        headingPanel.setBackground(new Color(15, 17, 26, 150)); // Semi-transparent dark background
-        headingPanel.setLayout(new FlowLayout());
+        headingPanel.setBackground(new Color(0, 128, 128, 150)); // Vibrant semi-transparent teal
+        headingPanel.setLayout(new BoxLayout(headingPanel, BoxLayout.Y_AXIS));
 
+        // Main heading
         JLabel heading = new JLabel("Hi there, where would you like to IndiGo today?");
         heading.setForeground(Color.WHITE);
         heading.setFont(new Font("Tahoma", Font.PLAIN, 36));
+        heading.setAlignmentX(Component.CENTER_ALIGNMENT);
         headingPanel.add(heading);
+
+        // Subheading line
+        JLabel subheading = new JLabel("India by IndiGo");
+        subheading.setForeground(Color.LIGHT_GRAY); // Soft contrast to white
+        subheading.setFont(new Font("Tahoma", Font.ITALIC, 28));
+        subheading.setAlignmentX(Component.CENTER_ALIGNMENT);
+        headingPanel.add(subheading);
 
         image.add(headingPanel, BorderLayout.NORTH); // Add heading at the top
 
         // Create the menu bar
         JMenuBar menubar = new JMenuBar();
-        menubar.setBackground(new Color(15, 17, 26));
+        menubar.setBackground(new Color(72, 61, 139)); // Vibrant slate blue
         menubar.setForeground(Color.WHITE);
         setJMenuBar(menubar);
 
@@ -40,31 +49,31 @@ public class Home extends JFrame implements ActionListener {
         JMenuItem flightDetails = new JMenuItem("Flight Details");
         flightDetails.addActionListener(this);
         details.add(flightDetails);
-        flightDetails.setBackground(new Color(15, 17, 26));
+        flightDetails.setBackground(new Color(72, 61, 139));
         flightDetails.setForeground(Color.white);
 
         JMenuItem customerDetails = new JMenuItem("Add Customer Details");
         customerDetails.addActionListener(this);
         details.add(customerDetails);
-        customerDetails.setBackground(new Color(15, 17, 26));
+        customerDetails.setBackground(new Color(72, 61, 139));
         customerDetails.setForeground(Color.white);
 
         JMenuItem bookFlight = new JMenuItem("Book Flight");
         bookFlight.addActionListener(this);
         details.add(bookFlight);
-        bookFlight.setBackground(new Color(15, 17, 26));
+        bookFlight.setBackground(new Color(72, 61, 139));
         bookFlight.setForeground(Color.white);
 
         JMenuItem journeyDetails = new JMenuItem("Journey Details");
         journeyDetails.addActionListener(this);
         details.add(journeyDetails);
-        journeyDetails.setBackground(new Color(15, 17, 26));
+        journeyDetails.setBackground(new Color(72, 61, 139));
         journeyDetails.setForeground(Color.white);
 
         JMenuItem ticketCancellation = new JMenuItem("Cancel Ticket");
         ticketCancellation.addActionListener(this);
         details.add(ticketCancellation);
-        ticketCancellation.setBackground(new Color(15, 17, 26));
+        ticketCancellation.setBackground(new Color(72, 61, 139));
         ticketCancellation.setForeground(Color.white);
 
         JMenu ticket = new JMenu("Ticket");
@@ -72,10 +81,21 @@ public class Home extends JFrame implements ActionListener {
         ticket.setForeground(Color.white);
 
         JMenuItem boardingPass = new JMenuItem("Boarding Pass");
-        boardingPass.addActionListener(this); // Added action listener for boarding pass
+        boardingPass.addActionListener(this);
         ticket.add(boardingPass);
-        boardingPass.setBackground(new Color(15, 17, 26));
+        boardingPass.setBackground(new Color(72, 61, 139));
         boardingPass.setForeground(Color.white);
+
+        // **New Code: Create Hotel Menu**
+        JMenu hotelMenu = new JMenu("Hotel");
+        menubar.add(hotelMenu);
+        hotelMenu.setForeground(Color.white);
+
+        JMenuItem hotelReservation = new JMenuItem("Hotel Reservation");
+        hotelReservation.addActionListener(this);
+        hotelMenu.add(hotelReservation);
+        hotelReservation.setBackground(new Color(72, 61, 139));
+        hotelReservation.setForeground(Color.white);
 
         // Set frame properties
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -97,6 +117,8 @@ public class Home extends JFrame implements ActionListener {
             new Cancel();
         } else if (text.equals("Boarding Pass")) {
             new BoardingPass();
+        } else if (text.equals("Hotel Reservation")) {
+            new AddHotelBooking(); // Open the AddHotelBooking window
         }
     }
 
