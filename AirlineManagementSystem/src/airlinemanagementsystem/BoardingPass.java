@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
-import java.util.*;
 
 public class BoardingPass extends JFrame implements ActionListener {
 
@@ -21,7 +20,7 @@ public class BoardingPass extends JFrame implements ActionListener {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Heading label
-        JLabel heading = new JLabel("AIR INDIA");
+        JLabel heading = new JLabel("INDIGO");
         heading.setFont(new Font("Tahoma", Font.PLAIN, 32));
         heading.setForeground(Color.WHITE);
         gbc.gridx = 1;
@@ -69,19 +68,25 @@ public class BoardingPass extends JFrame implements ActionListener {
         createLabelAndField("NAME", tfname = new JLabel(), gbc, 3);
         createLabelAndField("NATIONALITY", tfnationality = new JLabel(), gbc, 4);
         createLabelAndField("SRC", lblsrc = new JLabel(), gbc, 5);
-        createLabelAndField("DEST", lbldest = new JLabel(), gbc, 5, true);
-        createLabelAndField("Flight Name", labelfname = new JLabel(), gbc, 6);
-        createLabelAndField("Flight Code", labelfcode = new JLabel(), gbc, 6, true);
-        createLabelAndField("Date", labeldate = new JLabel(), gbc, 7);
+
+        // Move DEST to the next line
+        createLabelAndField("DEST", lbldest = new JLabel(), gbc, 6);
+
+        createLabelAndField("Flight Name", labelfname = new JLabel(), gbc, 7);
+
+        // Move Flight Code to the next line
+        createLabelAndField("Flight Code", labelfcode = new JLabel(), gbc, 8);
+
+        createLabelAndField("Date", labeldate = new JLabel(), gbc, 9);
 
         // Image section
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("airlinemanagementsystem/icons/airindia.png"));
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("airlinemanagementsystem/icons/indi.png"));
         Image i2 = i1.getImage().getScaledInstance(300, 230, Image.SCALE_DEFAULT);
         ImageIcon image = new ImageIcon(i2);
         JLabel lblimage = new JLabel(image);
         gbc.gridx = 4;
         gbc.gridy = 0;
-        gbc.gridheight = 8;
+        gbc.gridheight = 10;
         add(lblimage, gbc);
 
         setSize(1000, 500);
